@@ -1,0 +1,6 @@
+{
+  "name": "AI Plant Doctor",
+  "description": "A modern, professional AI plant diagnosis tool that scans plant leaves to identify diseases, nutrient deficiencies, watering stress, or pests, and recommends organic and botanical treatment solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
