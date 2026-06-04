@@ -51,6 +51,11 @@ export default function Sidebar({
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [showCodexInfo, setShowCodexInfo] = useState(false);
 
+  const handleClose = () => {
+    setIsOpen(false);
+    setSidebarCollapsed(true);
+  };
+
   // Group sessions by chronological dates
   const getFilteredSessions = () => {
     if (!searchQuery.trim()) return sessions;
@@ -101,7 +106,7 @@ export default function Sidebar({
                 onClick={() => {
                   setCurrentTab("chat");
                   onSelectSession(item.id);
-                  setIsOpen(false); // Close mobile drawer if clicked
+                  handleClose(); // Close mobile drawer if clicked
                 }}
                 className={`group flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer transition-all duration-150 text-xs ${
                   isActive
@@ -143,7 +148,7 @@ export default function Sidebar({
       {/* Semi-transparent backdrop on mobile when drawer is open */}
       {isOpen && (
         <div 
-          onClick={() => setIsOpen(false)}
+          onClick={handleClose}
           className="fixed inset-0 bg-neutral-900/40 z-45 md:hidden backdrop-blur-xs transition-opacity cursor-pointer animate-fade-in"
         />
       )}
@@ -206,10 +211,7 @@ export default function Sidebar({
             <div className="flex items-center gap-1.5">
               {/* Hide Sidebar Icon Button (Collapse) */}
               <button
-                onClick={() => {
-                  setSidebarCollapsed(true);
-                  setIsOpen(false);
-                }}
+                onClick={handleClose}
                 className="flex p-1.5 text-neutral-500 hover:text-neutral-800 hover:bg-[#eaeaea] rounded-lg cursor-pointer transition-colors"
                 title="Hide Sidebar"
               >
@@ -225,7 +227,7 @@ export default function Sidebar({
               onClick={() => {
                 setCurrentTab("chat");
                 onNewChat();
-                setIsOpen(false);
+                handleClose();
               }}
               className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-[13px] font-medium transition-colors cursor-pointer ${
                 currentTab === "chat" && activeSessionId === "session-welcome"
@@ -267,7 +269,7 @@ export default function Sidebar({
             <button
               onClick={() => {
                 setCurrentTab("compare");
-                setIsOpen(false);
+                handleClose();
               }}
               className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-[13px] font-medium transition-colors cursor-pointer ${
                 currentTab === "compare"
@@ -286,7 +288,7 @@ export default function Sidebar({
             <button
               onClick={() => {
                 setCurrentTab("reminders");
-                setIsOpen(false);
+                handleClose();
               }}
               className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-[13px] font-medium transition-colors cursor-pointer ${
                 currentTab === "reminders"
@@ -305,7 +307,7 @@ export default function Sidebar({
             <button
               onClick={() => {
                 setCurrentTab("apps");
-                setIsOpen(false);
+                handleClose();
               }}
               className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-[13px] font-medium transition-colors cursor-pointer ${
                 currentTab === "apps"
@@ -324,7 +326,7 @@ export default function Sidebar({
             <button
               onClick={() => {
                 setCurrentTab("codex");
-                setIsOpen(false);
+                handleClose();
               }}
               className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-[13px] font-medium transition-colors cursor-pointer ${
                 currentTab === "codex"
@@ -353,10 +355,7 @@ export default function Sidebar({
 
             {/* Hide History dedicated button */}
             <button
-              onClick={() => {
-                setSidebarCollapsed(true);
-                setIsOpen(false);
-              }}
+              onClick={handleClose}
               className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-[13px] font-medium text-[#0d0d0d] hover:bg-[#f3f3f3] hover:text-[#0d0d0d] transition-colors cursor-pointer"
               title="Hide Sidebar"
             >
